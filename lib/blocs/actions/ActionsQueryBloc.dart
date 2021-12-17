@@ -12,7 +12,6 @@ class ActionsQueryBloc extends BaseBloc {
   Stream<RootResponse> get shopContentStream => _controller.stream;
 
   void loadActionsContent() async {
-    // 1
     final results = await _client.fetchActionsInfo();
     addResultToController(_controller, results);
   }
