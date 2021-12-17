@@ -15,17 +15,17 @@ import 'package:junior_test/tools/Tools.dart';
 import 'package:junior_test/ui/actions/item/ActionsItemArguments.dart';
 import 'package:junior_test/ui/base/NewBasePageState.dart';
 
-class ActionsWidgetX extends StatefulWidget {
+class ActionsWidgetY extends StatefulWidget {
   static String TAG = "ActionsWidget";
 
   @override
-  _ActionsWidgetXState createState() => _ActionsWidgetXState();
+  _ActionsWidgetYState createState() => _ActionsWidgetYState();
 }
 
-class _ActionsWidgetXState extends NewBasePageState<ActionsWidgetX> {
+class _ActionsWidgetYState extends NewBasePageState<ActionsWidgetY> {
   ActionsQueryBloc bloc;
 
-  _ActionsWidgetXState() {
+  _ActionsWidgetYState() {
     bloc = ActionsQueryBloc();
   }
 
@@ -44,25 +44,9 @@ class _ActionsWidgetXState extends NewBasePageState<ActionsWidgetX> {
   void runOnWidgetInit() {
     bloc.loadActionsContent();
   }
-
-  Widget _getBody(PromoItem actionInfo) {
-    return SingleChildScrollView(
-        padding: EdgeInsets.only(left: 10, right: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(height: 20),
-            _shopInfo(actionInfo),
-            _shopDescription(actionInfo.shop_description),
-            SizedBox(height: 20),
-            _actionDescriptionFull(actionInfo.description)
-          ],
-        ));
-  }
-
-  Widget _actionsList(Promos actionInfo) {
+    Widget _actionsList(Promos actionInfo) {
     return Container(
-      margin: EdgeInsets.only(left: 12,right: 12),
+      margin: EdgeInsets.only(left: 12, right: 12),
       child: StaggeredGridView.countBuilder(
           crossAxisCount: 2,
           crossAxisSpacing: 10,
@@ -90,28 +74,32 @@ class _ActionsWidgetXState extends NewBasePageState<ActionsWidgetX> {
                       errorWidget: (context, url, error) =>
                           Image(image: AssetImage('mall_background.png')),
                       imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
-                        ),
-                      )),
-                    ),
-                    Column(
-                      children: [Expanded(
-                        child: Align(alignment: Alignment.center,
-                          child: Text(
-                            actionInfo.list[index].name,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontFamily: "YesEva",
-                                color: MyColors.appbar_text,
-                                fontSize: MyDimens.titleNormal,
-                                fontWeight: FontWeight.w500),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
-                        Align(alignment: Alignment.bottomRight,
+                    ),
+                    Column(
+                      children: [
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              actionInfo.list[index].name,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontFamily: "YesEva",
+                                  color: MyColors.appbar_text,
+                                  fontSize: MyDimens.titleNormal,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.bottomRight,
                           child: Padding(
                             padding: const EdgeInsets.all(4.0),
                             child: Text(
@@ -124,7 +112,6 @@ class _ActionsWidgetXState extends NewBasePageState<ActionsWidgetX> {
                             ),
                           ),
                         ),
-
                       ],
                     ),
                   ],
